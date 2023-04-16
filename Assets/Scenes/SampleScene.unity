@@ -386,6 +386,7 @@ MonoBehaviour:
   - C_Polyomino
   - O_Polyomino
   - W_Polyomino
+  Labels: Polyomino
 --- !u!4 &1508286217
 Transform:
   m_ObjectHideFlags: 0

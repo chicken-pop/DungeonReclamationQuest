@@ -9,15 +9,20 @@ public class AssetsLoad : MonoBehaviour
     public List<string> keys = new List<string>();
     AsyncOperationHandle<IList<GameObject>> opHandle;
 
+    public string Labels;
+
     public IEnumerator Start()
     {
         opHandle = Addressables.LoadAssetsAsync<GameObject>
-            (keys,
+            (Labels,
+            /*
                 obj =>
                 {
                     Debug.Log(obj.name);
                 },
                 Addressables.MergeMode.Union
+            */
+                null
             );
 
         yield return opHandle;
