@@ -19,6 +19,9 @@ public class AssetsLoad : MonoBehaviour
 
     public Transform PolominoRoot;
 
+    public Sprite DungeonHoleSprite;
+    public Sprite DungeonLidSprite;
+
     public IEnumerator Start()
     {
         opHandle = Addressables.LoadAssetsAsync<GameObject>
@@ -37,9 +40,14 @@ public class AssetsLoad : MonoBehaviour
 
         if (opHandle.Status == AsyncOperationStatus.Succeeded)
         {
-            var poly = Instantiate(opHandle.Result[level - 1],transform);
-            foreach (var polyomino in poly.GetComponentsInChildren<Polyomino>())
+            var polyominoDungeons = Instantiate(opHandle.Result[level - 1],transform);
+
+            foreach (var polyomino in polyominoDungeons.GetComponentsInChildren<Polyomino>())
             {
+                foreach (var poly in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    poly.sprite = DungeonHoleSprite;
+                }
                 Polyominos.Add(polyomino);
             }
             AssetLoad = true;
@@ -49,7 +57,13 @@ public class AssetsLoad : MonoBehaviour
         //ポリオミノをランダムに割り振る
         foreach (var poly in Polyominos)
         {
-            Instantiate(poly, PolominoRoot);
+            var dungeonLid = Instantiate(poly, PolominoRoot);
+
+            foreach (var lidRenderer in dungeonLid.GetComponentsInChildren<SpriteRenderer>())
+            {
+                lidRenderer.sprite = DungeonLidSprite;
+            }
+            
         }
     }
 
