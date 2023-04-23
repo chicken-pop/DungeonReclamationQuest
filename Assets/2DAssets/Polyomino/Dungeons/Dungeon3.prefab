@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2184010343981319194}
+  - component: {fileID: -667796174443455421}
   m_Layer: 0
   m_Name: Dungeon3
   m_TagString: Untagged
@@ -35,6 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-667796174443455421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2184010343981319189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd9b4d4db2600a4396c62c8d5d28dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsBulid: 0
 --- !u!1001 &1842232445041041612
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,5 +17,12 @@ public class PolyominoDungeonMaker : MonoBehaviour
         {
             dungeonHole.sprite = DungeonHoleSprite;
         }
+
+        foreach (var dungeonPolyomino in polyominoDungeons.GetComponentsInChildren<Polyomino>())
+        {
+            dungeonPolyomino.GetPolyominoCollider.isTrigger = true;
+            dungeonPolyomino.GetPpolyominoRigidbody2D.isKinematic = true;
+            dungeonPolyomino.IsDungeonPolyomino = true;
+        }
     }
 }

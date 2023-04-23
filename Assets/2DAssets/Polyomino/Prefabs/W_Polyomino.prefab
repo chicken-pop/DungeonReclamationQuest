@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4279322067943531951}
   - component: {fileID: -9077745710593910919}
   - component: {fileID: 8253808363305068531}
+  - component: {fileID: 7574740720318648720}
   m_Layer: 0
   m_Name: W_Polyomino
   m_TagString: Untagged
@@ -47,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4494253e517c72b4083e5226b7ca0d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDungeonPolyomino: 0
+  IsDragging: 0
+  IsBuried: 0
+  PolyominoType: 6
 --- !u!61 &8253808363305068531
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73,6 +78,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &7574740720318648720
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640937250566417424}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &3043788005383507881
 PrefabInstance:
   m_ObjectHideFlags: 0
