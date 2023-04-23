@@ -37,6 +37,36 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Polyomino
+  - m_GUID: eecdb1d812f525740a835d7a3e1187ca
+    m_Address: +_Polyomino
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Polyomino
+  - m_GUID: 22828a6d2f1fd9b4fbc8badff560f347
+    m_Address: L_Polyomino
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Polyomino
+  - m_GUID: 63b39bf85e2a35c4d93cd96f707cf8e3
+    m_Address: T_Polyomino
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Polyomino
+  - m_GUID: 0b7631c47b73f124384d7fbe7bc60c3a
+    m_Address: Dungeon1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dungeon
+  - m_GUID: 5ab48cd2ed8f24b4fb68899c1382025d
+    m_Address: Dungeon2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dungeon
+  - m_GUID: a46065dcd9a767f49b0ffb204160df72
+    m_Address: Dungeon3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dungeon
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3624c3657fa614249b779b981fbf2ab4, type: 2}
   m_SchemaSet:
