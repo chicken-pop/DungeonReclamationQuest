@@ -9,10 +9,20 @@ public class Dungeons : MonoBehaviour
 
     public bool IsBulid = false;
 
+    public MainGameEnemy MainGameEnemy;
+
     private void Start()
     {
+        var rand = Random.Range(0, this.transform.GetComponentsInChildren<Polyomino>().Count());
+        var count = 0;
+
         foreach (var polyomino in this.transform.GetComponentsInChildren<Polyomino>())
         {
+            count++;
+            if(rand == count)
+            {
+                Instantiate(MainGameEnemy.gameObject, polyomino.transform);
+            }
             polyominos.Add(polyomino);
         }
     }
