@@ -14,7 +14,7 @@ public class MainGamePlayerParameterManager : MonoBehaviour
         set { hitPoint = value; }
     }
 
-    private float hitPoint = 100;
+    private float hitPoint = 5;
 
     public void Damage(int damagePoint)
     {

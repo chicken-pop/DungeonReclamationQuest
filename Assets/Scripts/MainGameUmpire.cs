@@ -16,21 +16,37 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
         get { return mainGamePlayer; }
     }
 
-    private MainGameEnemy mainGameEnemy;
+    //•¡”‚Ì“G‚ğÀ‘•
+    private List<MainGameEnemy> mainGameEnemies =  new List<MainGameEnemy>();
 
     public MainGameEnemy SetMainGameEnemy
     {
-        set { mainGameEnemy = value; }
+        set { mainGameEnemies.Add(value); }
     }
 
-    public MainGameEnemy GetMainGameEnemy
+    public List<MainGameEnemy> GetMainGameEnemies
     {
-        get { return mainGameEnemy; }
+        get { return mainGameEnemies; }
     }
+    public bool isReady =false;
 
     private void Start()
     {
         isSceneinSingleton = true;
+        MainGameSceneStateManager.Instance.MainGameUmpire = this;
+    }
+
+    private void Update()
+    {
+        if (isReady)
+        {
+            return;
+        }
+
+        if(GetMainGamePlayer != null && mainGameEnemies.Count > 0)
+        {
+            isReady = true;
+        }
     }
 
 }

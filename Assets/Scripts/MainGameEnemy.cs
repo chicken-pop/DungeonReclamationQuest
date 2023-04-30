@@ -9,6 +9,16 @@ public class MainGameEnemy : MonoBehaviour
     private MainGameEnemyTimer mainGameEnemyTimer => GetComponent<MainGameEnemyTimer>();
     private MainGameEnemyParameterManager mainGameEnemyParameterManager => GetComponent<MainGameEnemyParameterManager>();
 
+    public float GetEnemyAttackTime
+    {
+        get { return mainGameEnemyTimer.enemyTimer; }
+    }
+    private void Awake()
+    {
+        MainGameUmpire.Instance.SetMainGameEnemy = this;
+    Debug.Log(MainGameUmpire.Instance.GetMainGameEnemies[0]);
+        }
+
     public void EnemyAttack()
     {
         MainGameUmpire.Instance.GetMainGamePlayer.Damage(mainGameEnemyParameterManager.GetEnemyAttackPoint);

@@ -18,11 +18,11 @@ public class Dungeons : MonoBehaviour
 
         foreach (var polyomino in this.transform.GetComponentsInChildren<Polyomino>())
         {
-            count++;
-            if(rand == count)
+            if (rand == count)
             {
                 Instantiate(MainGameEnemy.gameObject, polyomino.transform);
             }
+            count++;
             polyominos.Add(polyomino);
         }
     }
@@ -30,10 +30,10 @@ public class Dungeons : MonoBehaviour
     private void Update()
     {
         //Polyominosがすべて埋まっていたら
-         IsBulid = polyominos.All(polyomino => polyomino.IsBuried);
+        IsBulid = polyominos.All(polyomino => polyomino.IsBuried);
         if (IsBulid)
         {
-           Debug.Log("クリア");
+            Debug.Log("クリア");
         }
     }
 }
