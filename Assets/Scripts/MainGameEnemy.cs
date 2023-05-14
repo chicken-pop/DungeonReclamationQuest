@@ -9,6 +9,8 @@ public class MainGameEnemy : MonoBehaviour
     private MainGameEnemyTimer mainGameEnemyTimer => GetComponent<MainGameEnemyTimer>();
     private MainGameEnemyParameterManager mainGameEnemyParameterManager => GetComponent<MainGameEnemyParameterManager>();
 
+    public Polyomino ParentPolyomino = null;
+
     public float GetEnemyAttackTime
     {
         get { return mainGameEnemyTimer.enemyTimer; }
@@ -16,17 +18,23 @@ public class MainGameEnemy : MonoBehaviour
     private void Awake()
     {
         MainGameUmpire.Instance.SetMainGameEnemy = this;
-    Debug.Log(MainGameUmpire.Instance.GetMainGameEnemies[0]);
-        }
+        ParentPolyomino = transform.parent.GetComponent<Polyomino>();
+    }
 
     public void EnemyAttack()
     {
+        //プレイヤーのスクリプトにアクセスし、ダメージを与える
         MainGameUmpire.Instance.GetMainGamePlayer.Damage(mainGameEnemyParameterManager.GetEnemyAttackPoint);
     }
 
     private void Update()
     {
-        if(mainGameEnemyTimer.enemyTimer < 0)
+        if (ParentPolyomino.IsBuried)
+        {
+            this.gameObject.SetActive(false);
+        }
+
+        if (mainGameEnemyTimer.enemyTimer < 0)
         {
             EnemyAttack();
 

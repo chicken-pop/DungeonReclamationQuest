@@ -39,6 +39,17 @@ public class Polyomino : MonoBehaviour
         get { return polyominoRigidbody2D; }
     }
 
+    private void Start()
+    {
+        if (!IsDungeonPolyomino)
+        {
+            foreach (var mino in this.transform.GetComponentsInChildren<SpriteRenderer>())
+            {
+                mino.sortingOrder=5;
+            }
+        }
+    }
+
     //マウスがクリックされた時に実行される処理
     private void OnMouseDown()
     {
