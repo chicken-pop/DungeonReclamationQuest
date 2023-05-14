@@ -71,6 +71,7 @@ public class Dungeons : MonoBehaviour
         if (IsBulid)
         {
             Debug.Log("ÉNÉäÉA");
+            DungeonGameSceneManager.Instance.SceneChange("Title");
         }
     }
 }
