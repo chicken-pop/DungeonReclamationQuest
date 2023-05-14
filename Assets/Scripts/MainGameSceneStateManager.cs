@@ -39,7 +39,10 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 GameSceneStates = GameSceneState.Init;
                 break;
             case GameSceneState.Init:
+                //リソースの読み込み
                 StartCoroutine(AssetsLoad.LoadDungeons());
+                //リソース待ちのモーダルを表示する
+                StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal());
                 GameSceneStates = GameSceneState.Ready;
                 break;
             case GameSceneState.Ready:

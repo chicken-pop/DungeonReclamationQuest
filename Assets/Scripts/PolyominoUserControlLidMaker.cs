@@ -16,6 +16,8 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
 
         polyominoDungeons.GetComponent<Dungeons>().enabled = false;
 
+        polyominoDungeons.name = "UserControlLids";
+
         foreach (var userControlPolyominoRenderer in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
         {
             userControlPolyominoRenderer.sprite = DungeonLidSprite;
