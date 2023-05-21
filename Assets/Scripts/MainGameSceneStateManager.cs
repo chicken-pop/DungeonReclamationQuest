@@ -61,7 +61,12 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 }
                 break;
             case GameSceneState.MainGame:
-
+                if (MainGameUmpire.Instance.GetMainGamePlayer.IsDead)
+                {
+                    StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal(isShowLoadingImage: false));
+                    MainGameUIManager.ShowGameOverModal(ModalWindowSingletonManager.Instance.transform);
+                    GameSceneStates = GameSceneState.Result;
+                }
                 break;
             case GameSceneState.Result:
 

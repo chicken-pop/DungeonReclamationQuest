@@ -29,6 +29,12 @@ public class MainGameEnemy : MonoBehaviour
 
     private void Update()
     {
+        //MainGame‚¶‚á‚È‚¢ê‡‚ÍƒŠƒ^[ƒ“
+        if(MainGameSceneStateManager.Instance.GameSceneStates != MainGameSceneStateManager.GameSceneState.MainGame)
+        {
+            return;
+        }
+
         if (ParentPolyomino.IsBuried)
         {
             this.gameObject.SetActive(false);

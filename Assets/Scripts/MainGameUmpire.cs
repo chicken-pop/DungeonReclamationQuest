@@ -43,7 +43,7 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
             return;
         }
 
-        if(GetMainGamePlayer != null && mainGameEnemies.Count > 0)
+        if(isReady == false && GetMainGamePlayer != null && mainGameEnemies.Count > 0)
         {
             isReady = true;
         }

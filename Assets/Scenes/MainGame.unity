@@ -158,6 +158,7 @@ MonoBehaviour:
   PlayerHeartImage: {fileID: 4182602258035544109, guid: 6e03d0cbb445dd846b213cfaf478367e, type: 3}
   PlayerHeartRoot: {fileID: 1049812136}
   EnemyAttackGauge: {fileID: 5305044768445309649, guid: fe5ff533a3635864a85c3255cfde9882, type: 3}
+  gameOverModal: {fileID: 9200662258059380348, guid: c1dd26d3f237e5b4e8009b905754317d, type: 3}
 --- !u!114 &280068631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +216,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
