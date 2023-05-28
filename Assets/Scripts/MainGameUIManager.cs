@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,11 +23,32 @@ public class MainGameUIManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private GameObject gameOverModal;
-
     private GameObject gameOverModalInstance = null;
+
+    /// <summary>
+    /// ゲームオーバー用のUI
+    /// </summary>
+    [SerializeField]
+    private GameObject gameClearModal;
+    private GameObject gameClearModalInstance = null;
+
+    [SerializeField] private TextMeshProUGUI levelText;
+
+
 
     public void InitializeUI()
     {
+        playerHearts.Clear();
+        enemyAttackGauges.Clear();
+
+        if(PlayerHeartRoot.childCount > 0)
+        {
+            for (int i = 0; i < PlayerHeartRoot.childCount; i++)
+            {
+                Destroy(PlayerHeartRoot.GetChild(i).gameObject);
+            }
+        }
+
         playerhitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint;
 
         for (int i = 0; i < playerhitPointCount; i++)
@@ -39,9 +61,10 @@ public class MainGameUIManager : MonoBehaviour
         {
             var enemyGauge = Instantiate(EnemyAttackGauge.gameObject, this.transform);
             enemyGauge.transform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, MainGameUmpire.Instance.GetMainGameEnemies[i].transform.position);
-            Debug.Log(enemyGauge);
             enemyAttackGauges.Add(enemyGauge.GetComponent<Image>());
         }
+
+        levelText.text = $"Level:{MainGameSceneConfigManager.Instance.Level}";
     }
 
     private void LateUpdate()
@@ -78,7 +101,7 @@ public class MainGameUIManager : MonoBehaviour
             for (int i = 0; i < countDiff; i++)
             {
                 count++;
-                if(playerHearts[playerhitPointCount - count] != null)
+                if (playerHearts[playerhitPointCount - count] != null)
                 {
                     playerHearts[playerhitPointCount - count].GetComponent<MainGamePlayerHeart>().DamageChangeHeartIcon();
                 }
@@ -93,15 +116,29 @@ public class MainGameUIManager : MonoBehaviour
     /// </summary>
     public void ShowGameOverModal(Transform modalCanvas)
     {
-        if(gameOverModal != null && gameOverModalInstance == null)
+        if (gameOverModal != null && gameOverModalInstance == null)
         {
             gameOverModalInstance = Instantiate(gameOverModal, modalCanvas);
             gameOverModal.SetActive(true);
         }
 
-        if(gameOverModalInstance != null)
+        if (gameOverModalInstance != null)
         {
             gameOverModalInstance.SetActive(true);
+        }
+    }
+
+    public void ShowGameClearModal(Transform modalCanvas)
+    {
+        if (gameClearModal != null && gameClearModalInstance == null)
+        {
+            gameClearModalInstance = Instantiate(gameClearModal, modalCanvas);
+            gameClearModal.SetActive(true);
+        }
+
+        if (gameClearModalInstance != null)
+        {
+            gameClearModalInstance.SetActive(true);
         }
     }
 

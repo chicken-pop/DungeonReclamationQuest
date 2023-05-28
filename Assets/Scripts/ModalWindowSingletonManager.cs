@@ -75,6 +75,8 @@ public class ModalWindowSingletonManager : SingletonMonoBehaviour<ModalWindowSin
     //ƒ‚[ƒ_ƒ‹‚ð•Â‚¶‚é
     public void CloseModal()
     {
+        IsShowBackground(false);
+        IsShowLoadingImage(false);
         isModalActive = false;
     }
 }

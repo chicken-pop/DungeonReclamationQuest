@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBulid: 0
+  MainGameEnemy: {fileID: 7324216810043780468, guid: df09bab19a0668b4aba7f71d598f4c3f, type: 3}
 --- !u!1001 &1948547486676979659
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,6 +19,12 @@ public class ModalBase : MonoBehaviour
     [SerializeField]
     private Button secondaryButton;
 
+    public class ButtonAction
+    {
+        public UnityAction Action = null;
+        public string ButtonText = string.Empty;
+    }
+
     public virtual void ShowButtonModal()
     {
         this.gameObject.SetActive(true);
@@ -28,20 +35,26 @@ public class ModalBase : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public virtual void ButtonModalInitialize(UnityAction primaryAction, UnityAction secondaryAction = null)
+    public virtual void ButtonModalInitialize(ButtonAction primaryAction, ButtonAction secondaryAction = null)
     {
-        primaryButton.gameObject.SetActive(false);
-        secondaryButton.gameObject.SetActive(false);
+        primaryButton.onClick.RemoveAllListeners();
+        secondaryButton.onClick.RemoveAllListeners();
 
-        if(primaryButton != null)
+        if (primaryButton != null)
         {
-            primaryButton.gameObject.SetActive(true);
-            primaryButton.onClick.AddListener(() => primaryAction.Invoke());
+            primaryButton.onClick.AddListener(() => primaryAction.Action?.Invoke());
+            primaryButton.GetComponentInChildren<TextMeshProUGUI>().text = primaryAction.ButtonText;
         }
-        if(secondaryButton != null && secondaryAction != null)
+
+        if(secondaryButton == null)
         {
-            secondaryButton.gameObject.SetActive(true);
-            secondaryButton.onClick.AddListener(()=>secondaryAction.Invoke());
+            secondaryButton.gameObject.SetActive(false);
+        }
+
+        if (secondaryButton != null && secondaryAction != null)
+        {
+            secondaryButton.onClick.AddListener(() => secondaryAction.Action?.Invoke());
+            secondaryButton.GetComponentInChildren<TextMeshProUGUI>().text = secondaryAction.ButtonText;
         }
     }
 

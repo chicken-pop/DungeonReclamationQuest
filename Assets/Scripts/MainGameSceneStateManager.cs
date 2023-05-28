@@ -6,10 +6,11 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
 {
     public PolyominoDungeonMaker DungeonMaker;
     public PolyominoUserControlLidMaker UserControlLidMaker;
-    public AssetsLoad AssetsLoad;
 
     public MainGameUIManager MainGameUIManager;
     public MainGameUmpire MainGameUmpire;
+
+    public Dungeons Dungeons;
 
     /// <summary>
     /// ゲームシーンのステート
@@ -24,9 +25,10 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
         Result
     }
 
-    private void Start()
+    public override void Awake()
     {
         isSceneinSingleton = true;
+        base.Awake();
     }
 
     public GameSceneState GameSceneStates;
@@ -39,14 +41,20 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 GameSceneStates = GameSceneState.Init;
                 break;
             case GameSceneState.Init:
+                ModalWindowSingletonManager.Instance.CloseModal();
+                MainGameUmpire.Instance.isReady = false;
+                MainGameUmpire.Instance.GetMainGameEnemies.Clear();
                 //リソースの読み込み
-                StartCoroutine(AssetsLoad.LoadDungeons());
-                //リソース待ちのモーダルを表示する
-                StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal());
+                if (AssetsLoad.Instance.AssetLoaded == false || AssetsLoad.Instance.LoadedDungeons.Count == 0)
+                {
+                    StartCoroutine(AssetsLoad.Instance.LoadDungeons());
+                    //リソース待ちのモーダルを表示する
+                    StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal());
+                }
                 GameSceneStates = GameSceneState.Ready;
                 break;
             case GameSceneState.Ready:
-                if (AssetsLoad.AssetLoad)
+                if (AssetsLoad.Instance.AssetLoaded)
                 {
                     DungeonMaker.DungeonMake();
                     UserControlLidMaker.UserControlDungeonLidMake();
@@ -65,6 +73,12 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 {
                     StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal(isShowLoadingImage: false));
                     MainGameUIManager.ShowGameOverModal(ModalWindowSingletonManager.Instance.transform);
+                    GameSceneStates = GameSceneState.Result;
+                }
+                if (Dungeons.IsBulid)
+                {
+                    StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal(isShowLoadingImage: false));
+                    MainGameUIManager.ShowGameClearModal(ModalWindowSingletonManager.Instance.transform);
                     GameSceneStates = GameSceneState.Result;
                 }
                 break;

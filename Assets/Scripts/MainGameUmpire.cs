@@ -17,7 +17,7 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
     }
 
     //•¡”‚Ì“G‚ğÀ‘•
-    private List<MainGameEnemy> mainGameEnemies =  new List<MainGameEnemy>();
+    private List<MainGameEnemy> mainGameEnemies = new List<MainGameEnemy>();
 
     public MainGameEnemy SetMainGameEnemy
     {
@@ -28,11 +28,16 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
     {
         get { return mainGameEnemies; }
     }
-    public bool isReady =false;
+    public bool isReady = false;
 
-    private void Start()
+
+    public override void Awake()
     {
         isSceneinSingleton = true;
+        base.Awake();
+    }
+    private void Start()
+    {
         MainGameSceneStateManager.Instance.MainGameUmpire = this;
     }
 
@@ -43,7 +48,7 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
             return;
         }
 
-        if(isReady == false && GetMainGamePlayer != null && mainGameEnemies.Count > 0)
+        if (isReady == false && GetMainGamePlayer != null && mainGameEnemies.Count > 0)
         {
             isReady = true;
         }

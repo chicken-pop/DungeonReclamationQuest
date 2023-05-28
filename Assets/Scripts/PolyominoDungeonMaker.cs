@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PolyominoDungeonMaker : MonoBehaviour
 {
-    public AssetsLoad AssetsLoad;
     public Sprite DungeonHoleSprite;
 
     /// <summary>
@@ -12,7 +11,11 @@ public class PolyominoDungeonMaker : MonoBehaviour
     /// </summary>
     public void DungeonMake()
     {
-        var polyominoDungeons = Instantiate(AssetsLoad.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
+        if(transform.childCount > 0 && transform.GetChild(0) != null)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
+        var polyominoDungeons = Instantiate(AssetsLoad.Instance.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
         foreach (var dungeonHole in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
         {
             dungeonHole.sprite = DungeonHoleSprite;

@@ -13,6 +13,12 @@ public class MainGamePlayer : MonoBehaviour
     {
         get { return mainGamePlayerParameterManager.GetHitPoint; }
     }
+
+    public void ClearBonus()
+    {
+        mainGamePlayerParameterManager.AddBonusHitPoint();
+    }
+
     public void Damage(float damagePoint)
     {
         if (damagePoint > 0)

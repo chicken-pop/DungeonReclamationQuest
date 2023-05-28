@@ -13,6 +13,8 @@ public class Dungeons : MonoBehaviour
 
     private void Start()
     {
+        MainGameSceneStateManager.Instance.Dungeons = this;
+
         var polyominoCount = Random.Range(0, this.transform.GetComponentsInChildren<Polyomino>().Count());
         var enemyCount = Random.Range(1, polyominoCount);
 
@@ -70,8 +72,8 @@ public class Dungeons : MonoBehaviour
         IsBulid = polyominos.All(polyomino => polyomino.IsBuried);
         if (IsBulid)
         {
-            Debug.Log("クリア");
-            DungeonGameSceneManager.Instance.SceneChange("Title");
+            //Debug.Log("クリア");
+            //DungeonGameSceneManager.Instance.SceneChange("Title");
         }
     }
 }

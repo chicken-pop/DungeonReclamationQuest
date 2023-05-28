@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PolyominoUserControlLidMaker : MonoBehaviour
 {
-    public AssetsLoad AssetsLoad;
     public Sprite DungeonLidSprite;
 
     /// <summary>
@@ -12,7 +11,12 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
     /// </summary>
     public void UserControlDungeonLidMake()
     {
-        var polyominoDungeons = Instantiate(AssetsLoad.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
+        if(transform.childCount > 0 && transform.GetChild(0) != null)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
+
+        var polyominoDungeons = Instantiate(AssetsLoad.Instance.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
 
         polyominoDungeons.GetComponent<Dungeons>().enabled = false;
 
