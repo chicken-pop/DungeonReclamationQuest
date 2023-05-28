@@ -89,6 +89,7 @@ MonoBehaviour:
     - BGM
     - MainGameSE
     - UISE
+    - Particle
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 4c0fbbc26670dc44c91991125568a66f, type: 2}

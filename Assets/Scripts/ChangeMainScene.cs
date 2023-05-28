@@ -19,6 +19,8 @@ public class ChangeMainScene : MonoBehaviour
             {
                 SoundManager.Instance.PlayBGM(SoundManager.BGMType.StartGameBGM);
             }));
+
+            StartCoroutine(AssetsLoad.Instance.LoadParticles());
         }
     }
 

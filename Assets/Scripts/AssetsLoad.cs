@@ -12,6 +12,7 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
     AsyncOperationHandle<IList<GameObject>> opHandle;
 
     AsyncOperationHandle<IList<AudioClip>> soundHandle;
+    AsyncOperationHandle<IList<GameObject>> particleHandle;
 
     public string Labels;
 
@@ -23,7 +24,7 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
     {
         AssetLoaded = false;
         opHandle = Addressables.LoadAssetsAsync<GameObject>
-            ("Dungeon",null);
+            ("Dungeon", null);
 
         yield return opHandle;
 
@@ -62,9 +63,28 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
 
         var mainGameSeLoadHandle = Addressables.LoadAssetsAsync<AudioClip>("MainGameSE", null);
         yield return mainGameSeLoadHandle;
-        SoundManager.Instance.SetBGMClips(mainGameSeLoadHandle.Result.ToArray());
+        SoundManager.Instance.SetMainGameSEClips(mainGameSeLoadHandle.Result.ToArray());
 
         if (soundHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            AssetLoaded = true;
+            act?.Invoke();
+        }
+    }
+
+    public IEnumerator LoadParticles(UnityAction act = null)
+    {
+        AssetLoaded = false;
+
+        particleHandle = Addressables.LoadAssetsAsync<GameObject>("Particle", null);
+
+        yield return particleHandle;
+
+        var mainGameParticleHandle = Addressables.LoadAssetsAsync<GameObject>("Particle", null);
+
+        yield return mainGameParticleHandle;
+        ParticleManager.Instance.SetMaiGameParticles(mainGameParticleHandle.Result.ToList());
+        if (particleHandle.Status == AsyncOperationStatus.Succeeded)
         {
             AssetLoaded = true;
             act?.Invoke();
@@ -78,9 +98,14 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
             Addressables.Release(opHandle);
         }
 
-         if (opHandle.IsValid())
+        if (soundHandle.IsValid())
         {
             Addressables.Release(soundHandle);
+        }
+
+        if (particleHandle.IsValid())
+        {
+            Addressables.Release(particleHandle);
         }
     }
 
